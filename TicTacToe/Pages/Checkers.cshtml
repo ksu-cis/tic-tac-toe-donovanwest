@@ -1,0 +1,36 @@
+﻿@page
+@model TicTacToe.Pages.CheckersModel
+@{
+    ViewData["Title"] = "Checkers";
+}
+
+<h2>Checkers</h2>
+
+<div id="checkerBoard">
+    @for (int y = 0; y < 8; y++)
+    {
+        @for (int x = 0; x < 8; x++)
+        {
+            <div class="checkerSquare @((x+y)%2 == 0 ? "black": "red")" >
+                @if (@Model.Game.Board[x, y] != null)
+                {
+                    <div class="checker @Model.Game.Board[x,y].Color" draggable="true" data-x="@x" data-y="@y"></div>
+                }
+            </div>
+        }
+
+    }
+</div>
+
+<form>
+    <input type="text" name="checkerX" />
+    <input type="text" name="checkerY" />
+    <input type="text" name="checkerX" />
+    <input type="text" name="checkerY" />
+    <textarea name="state">
+        @Model.Game.Serialize();
+    </textarea>
+    <input type="submit" value="Make a move" />
+
+
+</form>

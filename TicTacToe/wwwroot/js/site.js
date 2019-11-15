@@ -1,4 +1,46 @@
-﻿var turn = "x";
+﻿
+
+var squares = document.getElementsByClassName("checkerSquare");
+var dragging;
+
+for (var i = 0; i < squares.length; i++) {
+    squares[i].addEventListener('dragenter', onDragEnter);
+    squares[i].addEventListener('drop', onDrop); 
+    squares[i.addEventListener('dragend', onDragEnd)]
+    squares[i].addEventListener('dragleave', onDragLeave);
+    squares[i].addEventListener('dragstart', onDragStart);
+
+
+}
+
+function onDrop(event) {
+    console.log(event);
+}
+
+function onDragEnter(event) {
+    if (event.target.children.length > 0) return;
+    if (event.target.classlist.contains("checker")) return;
+    if (event.target.classList.contains("red")) return;
+    event.preventDefault();
+    event.target.style.backgroundColor = "yellow"
+}
+
+function onDragLeave(event) {
+    event.target.style.backgroundColor = null;
+}
+
+function onDragEnd(event) {
+    console.log(event);
+}
+
+function onDragStart(event) {
+    dragging = {
+        x: event.target.data-x,
+        y: event.target.data-y
+    }
+}
+/*
+var turn = "x";
 
 
 function setTurn() {
@@ -64,3 +106,4 @@ var cells = document.getElementsByClassName("cell");
 for (var i = 0; i < cells.length; i++) {
     cells[i].addEventListener(event => { event.preventDefault });
 }
+*/
